@@ -3,10 +3,10 @@ q_overall <- list(
   qb01 = "Overall, which one of the following best describes how well you are managing financially these
 days?", 
   q013 = "How much stress, if any, do your finances cause you?",
-  q011 = "How often does this statement apply to you? 'My finances control my life.'",
+  q011 = "How often does this statement apply to you?: 'My finances control my life.'",
   q019 = "In the past 12 months, I worried whether our food would run out before I got money to buy
 more.",
-  q010 = "How often does this statement apply to you? “I have money left over at the end of the month.'",
+  q010 = "How often does this statement apply to you?: 'I have money left over at the end of the month.'",
   q008 = "How well does this statement describe you or your situation? 'I am just getting by financially.'")
 
 
