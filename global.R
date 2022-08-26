@@ -31,8 +31,10 @@ pulse_2021 <-
   read.csv(
     "~/Documents/Projects/2022-8 Mock Project/fhn-nile/data/Pulse_2021_survey_public_data (4).csv"
   )
+
 pulse_2021$immigrant_status <-
   trimws(gsub("[0-9]", "", pulse_2021$immigrant_status))
+
 pulse_2021$immigrant_status <-
   factor(
     pulse_2021$immigrant_status,
@@ -43,6 +45,8 @@ pulse_2021$immigrant_status <-
       "Third generation immigrant"
     )
   )
+
+pulse_2021$FinancialHealth <- fct_relevel(pulse_2021$FinancialHealth,c("Vulnerable","Coping","Healthy"))
 
 # ===== Function to generate frequency column
 
@@ -60,6 +64,7 @@ get_freq <- function(var) {
   label <- d %>% pull(.data[[var]])
   
   d$label <- label
+  # d$label <- trimws(gsub("^[0-9]","",d$label))
   
   
   return(d)
@@ -108,20 +113,21 @@ make_hc_num <- function(title, subtitle, data) {
           inside = FALSE,
           padding = 20,
           style = list(fontSize = "1.5rem"),
-          formatter = JS("function(){console.log(this); return `${this.point.y}` }")
+          formatter = JS("function(){return `${this.point.y}` }")
         )
       ),
       bar = list(dataLabels = list(
         enabled = F,
         inside = TRUE,
-        formatter = JS("function(){console.log(this); return `${this.point.y}` }")
+        formatter = JS("function(){return `${this.point.y}` }")
       ))
     ) %>%
     hc_title(text = title) %>%
     hc_subtitle(text = subtitle) %>%
     hc_xAxis(
       type = "category",
-      labels = list(style = list(color =  "#000000")),
+      labels = list(style = list(color =  "#000000"),
+                    formatter = JS("function() { return `${this.value}s` }")),
       title = list(text = ""),
       lineWidth = 0,
       tickWidth = 0
@@ -130,6 +136,8 @@ make_hc_num <- function(title, subtitle, data) {
     hc_add_theme(hc_theme_techimpact) %>% 
     hc_size(height = 700)
 }
+
+
 
 
 
@@ -228,7 +236,7 @@ make_hc_cat <- function(title, subtitle, caption, data) {
     hc_plotOptions(bar = list(dataLabels = list(
       enabled = T,
       inside = T,
-      formatter = JS("function(){console.log(this); return `${this.point.y}%` }")
+      formatter = JS("function(){return `${this.point.y}%` }")
     ))) %>%
     hc_tooltip(
       useHTML = T,
@@ -243,14 +251,32 @@ make_hc_cat <- function(title, subtitle, caption, data) {
                align = "center") %>%
     hc_xAxis(
       type = "category",
-      labels = list(style = list(color =  "#000000")),
       title = list(text = caption, align = "left"),
-      lineWidth = 1,
+      labels = list(
+        style = list(color =  "#000000", fontSize="1.4rem"),
+        formatter = JS("function() { return `${this.value}s` }")),
+      lineWidth = 0,
+      gridLineWidth = 0,
       tickWidth = 1
-    ) %>% hc_add_theme(hc_theme_techimpact) %>% hc_legend(verticalAlign = "top", itemDistance = 50) %>%
+    ) %>% 
+    hc_add_theme(hc_theme_techimpact) %>% 
+    hc_legend(verticalAlign = "top", itemDistance = 50) %>%
     hc_yAxis(reversedStacks = F,
-             labels = list(formatter = JS("function() { return `${this.value}%`}"))) %>% 
-    hc_size(height = 700)
-}
+             lineWidth = 0,
+             gridLineWidth = 0,
+             visible = F,
+             labels = list(formatter = JS("function() { return `${this.value}%` }"))) %>% 
+    hc_size(height =  700) %>% 
+    hc_legend(labelFormatter = JS("function() { 
+                                if(/\\d/.test(this.name)) {return `${this.name.split(/^[0-9]/)[1].trim()}`}
+                                else { return this.name }
+                                  }"))
+}  
+make_hc_cat(
+  title = "Overall Financial Health Ratings, 2021*",
+  subtitle = "",
+  '<br/><br/>*Based on scores of 0-100. <strong>0-39:</strong> "Financially Vulnerable"; <strong>40-79:</strong> "Financially Coping"; <strong>80-100:</strong> "Financially Healthy"',
+  data = get_freq("q003")
+)
 
 
