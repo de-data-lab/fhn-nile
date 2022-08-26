@@ -86,7 +86,7 @@ get_mean <- function(var) {
 
 # ===== Function to create chart from numeric column
 
-make_hc_num <- function(title, subtitle, data) {
+make_hc_num <- function(title, subtitle, caption, data) {
   highchart() %>%
     hc_add_series(
       data,
@@ -124,6 +124,9 @@ make_hc_num <- function(title, subtitle, data) {
     ) %>%
     hc_title(text = title) %>%
     hc_subtitle(text = subtitle) %>%
+    hc_caption(text = caption,
+               verticalAlign = "bottom",
+               align = "center")    %>%
     hc_xAxis(
       type = "category",
       labels = list(style = list(color =  "#000000"),
@@ -241,7 +244,9 @@ make_hc_cat <- function(title, subtitle, caption, data) {
     hc_tooltip(
       useHTML = T,
       formatter = JS(
-        "function() {console.log(this);  return `${this.point.label} <br/> ${this.point.name}: ${this.point.y}%`} "
+        "function() { 
+            if(/\\d/.test(this.point.label)) {this.point.label = this.point.label.split(/^[0-9]/)[1].trim()}
+             return `${this.point.label} <br/> ${this.point.name}: ${this.point.y}% (n = ${this.point.n})`} "
       )
     ) %>%
     hc_title(text = title)  %>%

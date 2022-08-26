@@ -67,58 +67,86 @@ server <- function(input, output, session) {
     if (!length(scroll) == 0) {
       if (scroll == 1) {
         data <- get_freq("FinancialHealth")
-        data$FinancialHealth <-
-          fct_relevel(data$FinancialHealth,
-                      c("Vulnerable", "Coping", "Healthy"))
+        caption = paste("n = ", sum(data$n))
+        
         make_hc_cat(
-          title = "Overall Financial Health Ratings, 2021*",
-          subtitle = "",
-          '<br/><br/>*Based on scores of 0-100. <strong>0-39:</strong> "Financially Vulnerable"; <strong>40-79:</strong> "Financially Coping"; <strong>80-100:</strong> "Financially Healthy"',
-          data = data
+          title = "Overall Financial Health Scores, 2021*",
+          subtitle = paste("n = ", sum(data$n)),
+          caption = '<br/><br/>*Based on scores of 0-100. <strong>0-39:</strong> "Financially Vulnerable"; <strong>40-79:</strong> "Financially Coping"; <strong>80-100:</strong> "Financially Healthy" <br/>',
+          data
         )
       }
       else if (scroll == 2) {
-        make_hc_cat(as.character(q_overall[input$id2]), "", "", get_freq(input$id2))
+        data <- get_freq(input$id2)
+        caption = paste("n = ", sum(data$n))
+        make_hc_cat(as.character(q_overall[input$id2]), "", caption, data)
       }
       else if (scroll == 3) {
-        make_hc_num(
-          title = "Average 'Spend' Scores",
-          subtitle = "Indicators:'Spend less than income'; 'Pay bills on time'",
-          data = get_mean("Scores_Spend")
+        data <- get_mean("Scores_Spend")
+        caption = paste("n = ", sum(data$n))
+        
+        make_hc_num(title = "Average 'Spend' Scores",
+          subtitle = "Indicators: 'Spend less than income'; 'Pay bills on time'",
+          caption,
+          data
         )
       }
       else if (scroll == 4) {
-        make_hc_cat(as.character(q_spend[input$id4]), "", "", get_freq(input$id4))
+        data <- get_freq(input$id4)
+        caption  <- paste("n = ", sum(data$n))
+        
+        make_hc_cat(as.character(q_spend[input$id4]), "", caption, data)
       }
       else if (scroll == 5) {
+        data <- get_mean("Scores_Save")
+        caption = paste("n = ", sum(data$n))
+        
         make_hc_num(
           title = "Average 'Save' Scores",
           subtitle = "Indicators:'Have sufficient living expenses in liquid savings', 'Have sufficient long-term savings or assets'",
-          data = get_mean("Scores_Save")
+          caption,
+          data
         )
       }
       else if (scroll == 6) {
-        make_hc_cat(as.character(q_save[input$id6]), "", "", get_freq(input$id6))
+        data <- get_freq(input$id6)
+        caption <- paste("n = ", sum(data$n))
+        
+        make_hc_cat(as.character(q_save[input$id6]), "", caption, data)
       }
       else if (scroll == 7) {
+        data <- get_mean("Scores_Borrow")
+        caption <-  paste("n = ", sum(data$n))
+        
         make_hc_num(
           title = "Average 'Borrow' Scores",
           subtitle = "Indicators:'Have sustainable debt load', 'Have a prime credit score'",
-          data = get_mean("Scores_Borrow")
+          caption,
+          data
         )
       }
       else if (scroll == 8) {
-        make_hc_cat(as.character(q_borrow[input$id8]), "", "", get_freq(input$id8))
+        data <- get_freq(input$id8)
+        caption <- paste("n = ", sum(data$n))
+        
+        make_hc_cat(as.character(q_borrow[input$id8]), "", caption, data)
       }
       else if (scroll == 9) {
+        data <- data = get_mean("Scores_Plan")
+        caption <- paste("n = ", sum(data$n))
+        
         make_hc_num(
           title = "Average 'Plan' Scores",
           subtitle = "Indicators:'Have appropriate insurance', 'Plan ahead for expenses'",
-          data = get_mean("Scores_Plan")
+          caption,
+          data
         )
       }
       else if (scroll == 10) {
-        make_hc_cat(as.character(q_plan[input$id10]), "", "", get_freq(input$id10))
+        data <- get_freq(input$id10)
+        caption <- paste("n = ", sum(data$n))
+        
+        make_hc_cat(as.character(q_plan[input$id10]), "", caption,data)
       }
     } else {
       make_hc_cat(

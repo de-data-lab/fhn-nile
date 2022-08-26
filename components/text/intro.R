@@ -24,9 +24,10 @@ intro <- div(
     ),
     "to provide a snapshot of first-, second-, and third-generation immigrants' financial health and how it compares to that of the non-immigrant population."
   ),
+  div(class="alert alert-info",
   p(
     span(style = "color:#ed8b00", icon("lightbulb")),
-    strong("Key questions for consideration:")
+    strong(HTML('&nbsp;'),"Key questions for consideration:")
   ),
   tags$ul(
     tags$li(
@@ -39,4 +40,5 @@ intro <- div(
       "What implications may these findings have on the development of outreach services, financial tools, and advocacy initiatives targeted to immigrant populations in the United States?"
     )
   )
+)
 )

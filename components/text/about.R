@@ -23,7 +23,9 @@ about <- fluidRow(
     a(href = "https://finhealthnetwork.org/tools/financial-health-score/", target =
         "_blank", "FinHealth Score,"),
     "which estimates survey respondent’s financial health on a spectrum from “Financially Vulnerable” to 'Financially Healthy.' This score is a composite number based on a respondent's reported spending, saving, borrowing, and planning behaviors."
-  )
+  ),
+  br(),
+  tags$a(class = "btn btn-success", target="_blank", href="https://finhealthnetwork.org/programs/financial-health-pulse/data/", "Get the full dataset")
 )), 
  column(
    4,
