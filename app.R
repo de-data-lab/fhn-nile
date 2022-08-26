@@ -16,8 +16,7 @@ ui <- bootstrapPage(
       12,
       div(
         id = "hero",
-        style = "
-                 padding:1rem;
+        style = "padding:1rem;
                  height: 200px;
                  width:100%;
                  position:relative;
@@ -34,17 +33,15 @@ ui <- bootstrapPage(
       )
     ),
     column(1),
-    column(
-      10,
-      style = "margin-top:3rem",
-      intro,
-      br(),
-      hr(),
-      about,
-      br(),
-      hr(),
-      definitions
-    ),
+    column(10,
+           style = "margin-top:3rem",
+           intro,
+           br(),
+           hr(),
+           about,
+           br(),
+           hr(),
+           definitions),
     column(1)
   ),
   br(),
@@ -72,8 +69,17 @@ ui <- bootstrapPage(
                  scr_10,
                )
              )
-           ))
-) 
+           )),
+  fluidRow(
+    column(1),
+    column(10,
+           h1("`summarise()` has grouped output by 'immigrant_status'. You can override using the `.groups` argument."),
+           p(str_flatten(stringi::stri_rand_lipsum(1))),
+           p(str_flatten(stringi::stri_rand_lipsum(1))),
+           p(str_flatten(stringi::stri_rand_lipsum(1)))),
+    column(1)
+  )
+)
 
 server <- function(input, output, session) {
   data <- reactive({
@@ -81,11 +87,15 @@ server <- function(input, output, session) {
     
     if (!length(scroll) == 0) {
       if (scroll == 1) {
+        data <- get_freq("FinancialHealth")
+        data$FinancialHealth <-
+          fct_relevel(data$FinancialHealth,
+                      c("Vulnerable", "Coping", "Healthy"))
         make_hc_cat(
           title = "Overall Financial Health Ratings, 2021*",
           subtitle = "",
           '<br/><br/>*Based on scores of 0-100. <strong>0-39:</strong> "Financially Vulnerable"; <strong>40-79:</strong> "Financially Coping"; <strong>80-100:</strong> "Financially Healthy"',
-          data = get_freq("FinancialHealth")
+          data = data
         )
       }
       else if (scroll == 2) {
