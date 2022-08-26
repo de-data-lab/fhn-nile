@@ -61,6 +61,11 @@ ui <- bootstrapPage(
     column(10,
            conclusion),
     column(1)
+  ), 
+  fluidRow(
+    column(12,
+           includeHTML("components/footer.html")
+           )
   )
 )
 
