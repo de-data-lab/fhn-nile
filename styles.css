@@ -2,6 +2,7 @@
              
 body {
      font-family: 'Libre Franklin';
+     overflow-x:hidden;
 }
  h1 {
      color: #0057B8;
