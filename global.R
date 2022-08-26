@@ -25,6 +25,7 @@ source("scrolly_sections/scr_borrow_2.R")
 source("components/text/intro.R")
 source("components/text/about.R")
 source("components/text/definitions.R")
+source("components/text/conclusion.R")
 source("theme_techimpact.R")
 
 pulse_2021 <-

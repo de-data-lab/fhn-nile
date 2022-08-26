@@ -59,10 +59,7 @@ ui <- bootstrapPage(
   fluidRow(
     column(1),
     column(10,
-           h1("`summarise()` has grouped output by 'immigrant_status'. You can override using the `.groups` argument."),
-           p(str_flatten(stringi::stri_rand_lipsum(1))),
-           p(str_flatten(stringi::stri_rand_lipsum(1))),
-           p(str_flatten(stringi::stri_rand_lipsum(1)))),
+           conclusion),
     column(1)
   )
 )
