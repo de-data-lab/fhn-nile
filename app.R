@@ -37,14 +37,21 @@ ui <- bootstrapPage(
                  scr_1,
                  hr(),
                  scr_2,
+                 hr(),
                  scr_3,
                  hr(),
                  scr_4,
+                 hr(),
                  scr_5,
+                 hr(),
                  scr_6,
+                 hr(),
                  scr_7,
+                 hr(),
                  scr_8,
+                 hr(),
                  scr_9,
+                 hr(),
                  scr_10,
                )
              )
@@ -132,7 +139,7 @@ server <- function(input, output, session) {
         make_hc_cat(as.character(q_borrow[input$id8]), "", caption, data)
       }
       else if (scroll == 9) {
-        data <- data = get_mean("Scores_Plan")
+        data <- get_mean("Scores_Plan")
         caption <- paste("n = ", sum(data$n))
         
         make_hc_num(
