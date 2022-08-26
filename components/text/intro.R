@@ -3,11 +3,6 @@ intro <- div(
     "Tracking the Financial Health of Immigrants to the U.S. Across Generations"
   ),
   br(),
-  tags$small(
-    em(
-      "Prepared as part of a mock project for Tech Impact's Data Innovation Lab."
-    )
-  ),
   br(),
   br(),
   p(
