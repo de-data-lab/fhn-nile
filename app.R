@@ -3,6 +3,7 @@ source("global.R")
 
 ui <- bootstrapPage(
   includeCSS("styles.css"),
+  includeScript("script.js"),
   fluidRow(
     column(
       12,
