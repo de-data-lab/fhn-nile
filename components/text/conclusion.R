@@ -1,4 +1,4 @@
-conclusion <- div(
+conclusion <- div(style="margin-bottom:15rem",
   h2("Key Takeaways and Implications"),
   br(), 
   p("The path towards financial stability can be uncertain for many newer immigrants to the United States, who may be saddled by issues such as underbanking, limited English proficiency, precarious employment arrangements, etc. However, more rigorous research would need to be done to demonstrate convincingly whether or not the overall financial health of those who identify as immigrants is worse than that of the general population. For a number of the indicators analyzed above, first- and second-generation immigrants scored higher than non-immigrants or expressed higher levels of confidence in their financial behaviors.", 

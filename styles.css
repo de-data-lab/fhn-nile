@@ -46,6 +46,7 @@ body {
      background-attachment: fixed;
      background-image: url('https://images.pexels.com/photos/7821685/pexels-photo-7821685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') 
 }
+
  #logo {
      display:block;
      height: 70px;
@@ -54,3 +55,14 @@ body {
      right:0;
      padding-right:1rem;
 }
+
+
+.footer-hidden { 
+  display:none;
+  
+}
+
+.footer-shown { 
+  bottom: 0%;
+}
+
