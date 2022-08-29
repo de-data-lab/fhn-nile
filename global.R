@@ -30,7 +30,7 @@ source("theme_techimpact.R")
 
 pulse_2021 <-
   read.csv(
-    "~/Documents/Projects/2022-8 Mock Project/fhn-nile/data/Pulse_2021_survey_public_data (4).csv"
+    "./data/Pulse_2021_survey_public_data (4).csv"
   )
 
 pulse_2021$immigrant_status <-
